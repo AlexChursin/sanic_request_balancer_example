@@ -1,13 +1,9 @@
-from sanic import Sanic, response
+from sanic import Sanic
+from redirect_router import balancer
+from config import SERVER_CONFIG
 
 app = Sanic(__name__)
-
-
-@app.route('/')
-def handle_request(request):
-    return response.redirect('/redirect')
-
-
+app.blueprint(balancer)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=8000)
+    app.run(host=SERVER_CONFIG.HOST, port=SERVER_CONFIG.PORT, debug=SERVER_CONFIG.DEBUG)
