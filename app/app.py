@@ -1,6 +1,6 @@
 from sanic import Sanic
-from redirect_router import balancer
-from config import SERVER_CONFIG
+from api.redirect_router import balancer
+from api.config import SERVER_CONFIG
 
 app = Sanic(__name__)
 app.blueprint(balancer)
